@@ -1,34 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../country.css';
 
 const Navigation = props => {
-  <div>
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <Link className="navbar-brand" to="/">
-            Państwa.js
-          </Link>
-        </div>
-        <div className="collapse navbar-collapse">
-          <ul className="nav navbar-nav">
-            <li>
-              <Link to="/countries"></Link>
+  return (
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <Link className="navbar-brand" to="/">
+          Państwa.js
+        </Link>
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li classname="nav-item" activeClassName="active">
+              <Link className="nav-link" to="/countries">
+                Countries
+              </Link>
             </li>
-            <li>
-              <Link to="/continents"></Link>
+            <li classname="nav-item" activeClassName="active">
+              <Link className="nav-link" to="/continents">
+                Continents
+              </Link>
             </li>
-            <li>
-              <Link to="/contact"></Link>
+            <li classname="nav-item" activeClassName="active">
+              <Link className="nav-link" to="/contact">
+                Contact
+              </Link>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
-    <div className="container-fluid">{props.children}</div>
-  </div>;
+      </nav>
+      <div className="container-fluid">{props.children}</div>
+    </div>
+  );
 };
 
 export default Navigation;
