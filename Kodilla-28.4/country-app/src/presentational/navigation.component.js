@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../country.css';
@@ -8,9 +8,9 @@ const Navigation = props => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light">
-        <Link className="navbar-brand" to="/">
+        <IndexLink className="navbar-brand" to="/">
           Państwa.js
-        </Link>
+        </IndexLink>
 
         <button
           className="navbar-toggler"
@@ -25,18 +25,18 @@ const Navigation = props => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li classname="nav-item" activeClassName="active">
-              <Link className="nav-link" to="/countries">
+            <li className="nav-item">
+              <Link className="nav-link" activeClassName="active bg-info text-light" to="/countries">
                 Countries
               </Link>
             </li>
-            <li classname="nav-item" activeClassName="active">
-              <Link className="nav-link" to="/continents">
+            <li className="nav-item">
+              <Link className="nav-link" activeClassName="active bg-info text-light" to="/continents">
                 Continents
               </Link>
             </li>
-            <li classname="nav-item" activeClassName="active">
-              <Link className="nav-link" to="/contact">
+            <li className="nav-item">
+              <Link className="nav-link" activeClassName="active bg-info text-light" to="/contact">
                 Contact
               </Link>
             </li>
