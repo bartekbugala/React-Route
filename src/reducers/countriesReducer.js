@@ -3,7 +3,8 @@ import countriesData from '../data/countries.json';
 
 const initialState = {
   countries: countriesData,
-  selectedCountry: {}
+  selectedCountry: {},
+  visibleCountries: []
 };
 
 const countriesReducer = function(state = initialState, action) {
