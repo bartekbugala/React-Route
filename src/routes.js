@@ -4,7 +4,7 @@ import Navigation from './presentational/navigation.component';
 import Home from './presentational/home.component';
 import Contact from './presentational/contact.component';
 import NotFound from './presentational/not-found.component';
-import CountryFlagContainer from './containers/flag.container';
+import CountryFlagContainer from './containers/countryFlag.container';
 import CountryDetailsContainer from './containers/countryDetails.container';
 
 export default (
