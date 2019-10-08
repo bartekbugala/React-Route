@@ -17,7 +17,7 @@ class ContinentsContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(setContinent('Europa'));
+    this.props.dispatch(setContinent('Europe'));
   }
 
   render() {
