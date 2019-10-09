@@ -4,10 +4,6 @@ import { getCountry } from '../actions/actionsCountries';
 import CountryDetails from '../presentational/countryDetails.component';
 
 class CountryDetailsContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.dispatch(getCountry(this.props.params.id));
   }
