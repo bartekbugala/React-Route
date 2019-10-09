@@ -3,8 +3,8 @@ import {
   GET_COUNTRY,
   DELETE_COUNTRY,
   SEARCH_COUNTRIES,
-  SET_CONTINENT
-  /* FETCH_COUNTRIES */
+  SET_CONTINENT,
+  FETCH_COUNTRIES
 } from './actionTypes';
 
 export function getCountries() {
@@ -40,69 +40,36 @@ export function setContinent(continentName) {
     continentName
   };
 }
-////////////////////////////////////////////////////////////
-export function getDataRequested() {
-  return {
-    type: 'GET_DATA_REQUESTED'
-  };
-}
 
-export function getDataDone(countries) {
+export function fetchedCountries(countries) {
   return {
-    type: 'GET_DATA_DONE',
+    type: FETCH_COUNTRIES,
     countries
   };
 }
 
-export function getDataFailed(error) {
-  return {
-    type: 'GET_DATA_FAILED',
-    payload: error
-  };
-}
-
-export function getData() {
+export function fetchCountries() {
   return dispatch => {
-    // set state to "loading"
-    dispatch(getDataRequested());
-
     fetch('https://restcountries.eu/rest/v2/all?fields=name;currencies;population;capital;region;flag')
       .then(response => response.json())
       .then(countries => {
-        // set state for success
-        dispatch(getDataDone(countries));
+        let countriesRemapped = countries.map((country, i) => {
+          return {
+            name: country.name,
+            currency: country.currencies[0].code,
+            populace: country.population / 1000000,
+            capital: country.capital,
+            continent: country.region,
+            imageUrl: country.flag,
+            id: i
+          };
+        });
+        // set state with fetched countries
+        dispatch(fetchedCountries(countriesRemapped));
       })
       .catch(error => {
-        // set state for error
-        dispatch(getDataFailed(error));
+        // console.log error
+        dispatch(console.log(error));
       });
   };
 }
-
-/*function getCountries() {
-    const restCountriesUrl =
-    'https://restcountries.eu/rest/v2/all?fields=name;currencies;population;capital;region;flag';
-
-  let restCountriesData = [];
-  let restCountriesData2 = [];
-
-  fetch(restCountriesUrl)
-    .then(response => response.json())
-    .then(result => {
-      restCountriesData = [...result];
-
-      restCountriesData2 = restCountriesData.map((country, i) => {
-        return {
-          name: country.name,
-          currency: country.currencies[0].code,
-          populace: country.population / 1000000,
-          capital: country.capital,
-          continent: country.region,
-          imageUrl: country.flag,
-          id: i
-        };
-      });
-      console.dir(restCountriesData2);
-      return restCountriesData2;
-    });
-}*/

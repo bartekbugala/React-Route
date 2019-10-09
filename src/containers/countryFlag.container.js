@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CountryFlagList from '../presentational/flagList.component';
-import { getCountries, searchCountries, deleteCountry, getData } from '../actions/actionsCountries';
+import { getCountries, searchCountries, deleteCountry, fetchCountries } from '../actions/actionsCountries';
 
 class CountryFlagContainer extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class CountryFlagContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getData());
+    this.props.dispatch(fetchCountries());
     this.props.dispatch(getCountries());
     this.props.dispatch(searchCountries(''));
   }
