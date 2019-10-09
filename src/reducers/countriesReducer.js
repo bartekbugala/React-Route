@@ -1,4 +1,13 @@
-import { GET_COUNTRIES, GET_COUNTRY, SEARCH_COUNTRIES, DELETE_COUNTRY, SET_CONTINENT } from '../actions/actionTypes';
+import {
+  GET_COUNTRIES,
+  GET_COUNTRY,
+  SEARCH_COUNTRIES,
+  DELETE_COUNTRY,
+  SET_CONTINENT,
+  GET_DATA_REQUESTED,
+  GET_DATA_DONE,
+  GET_DATA_FAILED
+} from '../actions/actionTypes';
 import countriesData from '../data/countries.json';
 
 const initialState = {
@@ -26,6 +35,12 @@ const countriesReducer = function(state = initialState, action) {
     case SET_CONTINENT:
       const continentCountries = state.countries.filter(country => country.continent === action.continentName);
       return Object.assign({}, state, { visibleCountries: continentCountries });
+    case GET_DATA_REQUESTED:
+      return { ...state, isLoading: true };
+    case GET_DATA_DONE:
+      return { ...state, isLoading: false, countries: action.countries };
+    case GET_DATA_FAILED:
+      return { ...state, isLoading: false, isError: true };
     default:
       return state;
   }
